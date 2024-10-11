@@ -21,7 +21,7 @@ def load_model(filename='sohrab.keras'):
     except:
         print('{} not found!'.format(filename))
 
-def generate(verse, seq_len=10, k=10, decoding_method=DECODING_METHODS['top_k'], tokenizer_filename='tokenizer.json', model_filename='sohrab.keras'):
+def generate(verse, seq_len=25, k=10, decoding_method=DECODING_METHODS['top_k'], tokenizer_filename='tokenizer.json', model_filename='sohrab.keras'):
     SEQ_LEN = seq_len
     K = k
     sentence = verse
