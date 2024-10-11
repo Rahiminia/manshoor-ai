@@ -1,13 +1,23 @@
 <Html>
     <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         ManshoorAI
     </title>
     <link rel="stylesheet" href="/static/style.css" />
     </Head>
     <Body>
+        <div id="loading-wrapper">
+            <div id="loading-spinner"></div>
+            <p style="color: #111;">لطفا صبور باشید</p>
+        </div>
         <div id="wrapper">
             <h2>هوش منشور</h2>
+            <h4>چند خطی شعر نو مهمان هوش کوچک ما باشید</h4>
+            <h5>آموزش داده شده روی اشعار سهراب</h5>
             <textarea id="verse"></textarea>
             <input type="text" id="sample_verse" placeholder="یک متن نمونه وارد کنید"/>
             <button id="submit_btn">بساز</button>

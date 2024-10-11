@@ -1,5 +1,22 @@
 body {
     direction: rtl;
+    padding: 0;
+    margin: 0;
+    background-color: #eee;
+}
+
+h2, h4, h5 {
+    margin: 0;
+    margin-top: 20px;
+}
+
+h4 {
+    color: #555;
+}
+
+h5 {
+    margin-bottom: 20px;
+    color: #555;
 }
 
 #wrapper {
@@ -7,6 +24,7 @@ body {
     flex-direction: column;
     width: 400px;
     padding: 10px;
+    padding-right: 40px;
 }
 
 #verse {
@@ -44,3 +62,44 @@ body {
 #submit_btn:active {
     background-color: #358368;
 }
+
+#loading-wrapper {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 6px solid #35af85;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    100% {transform: rotate(360deg);}
+}
+
+@media only screen and (max-width: 600px) {
+    #wrapper {
+        padding-right: 20px;
+    }
+    h2 {
+        font-size: larger;
+    }
+    h4 {
+        font-size: medium;
+    }
+     h5 {
+        font-size: small;
+     }
+  }
