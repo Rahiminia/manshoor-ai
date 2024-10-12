@@ -5,9 +5,8 @@ body {
     background-color: #eee;
 }
 
-h2, h4, h5 {
-    margin: 0;
-    margin-top: 20px;
+h2, h4 {
+    margin: 15px 0;
 }
 
 h4 {
@@ -15,8 +14,47 @@ h4 {
 }
 
 h5 {
-    margin-bottom: 20px;
+    margin: 0 0 15px 0;
     color: #555;
+}
+
+.ltr{
+    direction: ltr;
+}
+
+.parameter-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0 20px 0;
+    width: 360px;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 8px;
+    padding-left: 38px;
+}
+
+.parameter-line {
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.selector {
+    margin-top: 10px;
+    height: 40px;
+    width: 560px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 5px #ddd;
+    border-radius: 7px;
+    background-color: white;
+}
+
+label {
+    font-size: 0.8em;
+    margin-left: 8px;
+    width: 100%;
+    text-align: left;
 }
 
 #wrapper {
@@ -32,20 +70,23 @@ h5 {
     border: 1px solid #bbb;
     box-shadow: 1px 1px 5px #ddd;
     padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
     border-radius: 7px;
 }
 
-#sample_verse {
-    margin: 10px 0;
+.textbox {
+    margin-top: 10px;
     height: 40px;
-    padding-right: 10px;
-    border: 1px solid #bbb;
+    padding: 0 10px;
+    border: 1px solid #ccc;
     box-shadow: 1px 1px 5px #ddd;
     border-radius: 7px;
 }
 
 #submit_btn {
     height: 40px;
+    margin: 10px 0;
     background-color: #72bda3;
     box-shadow: 1px 1px 5px #ddd;
     color: #111;

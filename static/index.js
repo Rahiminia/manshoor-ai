@@ -2,15 +2,22 @@ const generateBtn = document.getElementById('submit_btn')
 const verseTxtBox = document.getElementById('verse')
 const sampleVerseTxt = document.getElementById('sample_verse')
 const loading = document.getElementById('loading-wrapper')
+const paramKTxt = document.getElementById('k-param')
+const seqLenTxt = document.getElementById('seq-len-txt')
+const methodTxt = document.getElementById('method-select')
 
 const API_URL = 'http://127.0.0.1:4000/api/generate'
+
+let selectedMethod = 0
+paramKTxt.disabled = true;
 
 const generate = async (verse) => {
     if (!verse || verse.length == 0) {
         return ""
     }
     loading.style.visibility = 'visible'
-    fetch(API_URL + `?verse=${verse}`)
+    const q = `?verse=${verse}&method=${methodTxt.selectedIndex}&len=${seqLenTxt.value}&k=${paramKTxt.value}`
+    fetch(API_URL + q)
     .then(res => res.json())
     .then(res => {
         verseTxtBox.value = res.verse
@@ -27,3 +34,13 @@ const clickHandler = () => {
 }
 
 generateBtn.addEventListener('click', clickHandler)
+
+methodTxt.addEventListener('change', (e) => {
+    selectedMethod = e.target.selectedIndex
+    if (selectedMethod === 2) {
+        paramKTxt.disabled = false;
+    }
+    else {
+        paramKTxt.disabled = true;
+    }
+})
