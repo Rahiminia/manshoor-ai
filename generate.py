@@ -30,6 +30,9 @@ def generate(verse, seq_len=25, k=10, decoding_method=DECODING_METHODS['top_k'],
     loaded_model = load_model(model_filename)
     vocab = tokenizer.word_index
     max_len = 17
+    seq_len = np.clip(seq_len, 1, 50)
+    k = np.clip(k, 1, 1000)
+    decoding_method = np.clip(decoding_method, 0, 2)
     for _ in range(SEQ_LEN):
         s = tokenizer.texts_to_sequences([sentence])
         s = pad_sequences(s, maxlen=max_len)
