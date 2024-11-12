@@ -42,18 +42,30 @@ h5 {
 .selector {
     margin-top: 10px;
     height: 40px;
-    width: 560px;
-    padding: 0 10px;
+    flex-grow: 1;
+    padding-left: 5px;
     border: 1px solid #ccc;
     box-shadow: 1px 1px 5px #ddd;
     border-radius: 7px;
     background-color: white;
+    text-align: end;
+}
+
+.yellow {
+    background:#ffcc00;
+    border-radius: 5px;
+    color:#2c2c2c;
+    width: fit-content;
+    padding-inline: 10px;
+    padding-block: 2px;
+    font-weight: normal;
+    font-size: small;
 }
 
 label {
     font-size: 0.8em;
     margin-left: 8px;
-    width: 100%;
+    flex-grow: 1;
     text-align: left;
 }
 
@@ -62,7 +74,7 @@ label {
     flex-direction: column;
     width: 400px;
     padding: 10px;
-    padding-right: 40px;
+    padding-right: 60px;
 }
 
 #verse {
