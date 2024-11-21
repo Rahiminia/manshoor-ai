@@ -5,6 +5,11 @@ body {
     background-color: #eee;
 }
 
+p {
+    padding: 0;
+    margin: 0;
+}
+
 h2, h4 {
     margin: 15px 0;
 }
@@ -136,6 +141,42 @@ label {
     border-top-color: transparent;
     border-radius: 50%;
     animation: rotate 1s linear infinite;
+}
+
+#faq-container {
+    margin-top: 20px;
+}
+
+.faq-item {
+    height: 20px;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    padding-inline: 10px;
+    padding-block: 10px;
+    margin-block: 15px;
+    transition: all 300ms;
+    box-shadow: 1px 1px 5px #ddd;
+    font-size: 0.9em;
+}
+
+.faq-item .question {
+    padding-bottom: 10px;
+}
+
+.faq-item .question::before {
+    content: "+";
+    padding-left: 5px;
+}
+
+.faq-item.open .question::before {
+    content: "-";
+}
+
+.faq-item.open {
+    height: 150px;
 }
 
 @keyframes rotate {
