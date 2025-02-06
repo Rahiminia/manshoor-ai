@@ -17,9 +17,13 @@
         <div id="wrapper">
             <h2>هوش منشور</h2>
             <h4>چند کلمه فارسی وارد کن و اجازه بده هوش منشور، شعر رو ادامه بده!</h4>
-            <h5 class="yellow">آموزش داده شده روی اشعار سهراب</h5>
-            <div class="parameter-wrapper">
-                <p style="font-size: 0.8em; padding-right: 20px; text-align: center;">پارامترهای مدل</p>
+            <h5 class="yellow">آموزش داده شده روی اشعار سهراب و فروغ</h5>
+            <div class="note">
+                <h5>من یک مدل GPT2 هم با همین دیتا آموزش دادم. اگر تجربه کار با HuggingFace و Transformers رو دارید از این پروژه هم دیدن کنید </h5>
+                <a class="small" href="https://huggingface.co/rahiminia/manshoorai">پروژه GPT2 FineTuned  در HuggingFace</a>
+            </div>
+            <div id="lstm-params" class="box-wrapper">
+                <p style="font-size: 0.8em; padding-right: 20px; text-align: center;">پارامترهای مدل LSTM</p>
                 <div class="parameter-line">
                     <label for="seq-len-txt">طول رشته خروجی:</label>
                     <input type="number" id="seq-len-txt" class="textbox ltr" placeholder="طول متن خروجی" value="25"/>
@@ -38,7 +42,7 @@
                 </div>
             </div>
             <textarea id="verse" disabled></textarea>
-            <input type="text" class="textbox" id="sample_verse" placeholder="یک متن نمونه وارد کنید"/>
+            <input type="text" class="textbox" id="sample_verse" placeholder="چند کلمه برای شروع شعر..."/>
             <button id="submit_btn">بساز</button>
             <h5>این یه پروژه تفریحیه، خروجی‌ها رو جدی نگیرید :)</h5>
             <div style="display: flex;">

@@ -3,13 +3,28 @@ body {
     padding: 0;
     margin: 0;
     background-color: #eee;
+    font-family: 'Vazirmatn'
 }
 
 p {
     padding: 0;
     margin: 0;
 }
-
+div.note {
+    background-color: #7DD3FC;
+    border-radius: 5px;
+    padding-inline: 10px;
+    padding-block: 5px;
+    margin-block: 5px;
+}
+div.note h5 {
+    color: #082F49;
+    font-weight: normal;
+    margin: 5px 0;
+}
+a.small {
+    font-size: small;
+}
 h2, h4 {
     margin: 15px 0;
 }
@@ -27,7 +42,7 @@ h5 {
     direction: ltr;
 }
 
-.parameter-wrapper {
+.box-wrapper {
     display: flex;
     flex-direction: column;
     padding: 10px 0 20px 0;
@@ -36,6 +51,7 @@ h5 {
     background-color: white;
     border-radius: 8px;
     padding-left: 38px;
+    margin: 5px 0;
 }
 
 .parameter-line {
@@ -59,7 +75,7 @@ h5 {
 .yellow {
     background:#ffcc00;
     border-radius: 5px;
-    color:#2c2c2c;
+    color:#713F12;
     width: fit-content;
     padding-inline: 10px;
     padding-block: 2px;
@@ -80,6 +96,7 @@ label {
     width: 400px;
     padding: 10px;
     padding-right: 60px;
+    margin: auto;
 }
 
 #verse {
@@ -87,7 +104,7 @@ label {
     border: 1px solid #bbb;
     box-shadow: 1px 1px 5px #ddd;
     padding: 10px;
-    margin-top: 10px;
+    margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 7px;
 }

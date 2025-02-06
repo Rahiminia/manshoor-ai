@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, render_template
-from generate import generate
+from generate_scripts.generate_lstm_onnx import generate
 
 def validate(v, c):
     if v < c[0] or v > c[1]:
@@ -24,7 +24,6 @@ def generate_verse():
         seq_len = int(request.args.get('len'))
         method = int(request.args.get('method'))
         k = int(request.args.get('k'))
-        print(seq_len, method, k)
         if not validate(seq_len, [0, 50]) or not validate(method, [-1, 2]) or not validate(k, [1, 1000]):
             raise ValueError('invalid parameters')
         if not verse or len(verse) < 0:

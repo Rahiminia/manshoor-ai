@@ -31,9 +31,9 @@ Welcome to **ManshoorAI**, a fun and interactive machine learning project that b
 
 ---
 
-## 🚀 Quick Start
+# 🚀 Quick Start
 
-### Prerequisites
+## Prerequisites
 
 Make sure you have the following installed:
 - Python 3.8+
@@ -113,6 +113,11 @@ A simple web interface to make poetry generation accessible and fun! You can:
 
 ## 📚 Methods Explained
 
+**HuggingFace Transformers**:  
+I also finetuned a GPT2 model using a curated dataset from Sohrab Sepehri and Forough Farokhzad.  
+**Check it out [Here](https://huggingface.co/rahiminia/manshoorai)**
+
+**LSTM Model**:
 1. **Greedy**: Picks the most probable next word every time.  
    *Pros*: Coherent and structured output.  
    *Cons*: Can feel repetitive or dull.

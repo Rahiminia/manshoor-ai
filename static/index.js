@@ -6,9 +6,15 @@ const paramKTxt = document.getElementById('k-param')
 const seqLenTxt = document.getElementById('seq-len-txt')
 const methodTxt = document.getElementById('method-select')
 
+const METHODS = {
+    GREEDY: 0,
+    RANDOM: 1,
+    TOP_K: 2,
+}
+
 const API_URL = 'http://127.0.0.1:4000/api/generate'
 
-let selectedMethod = 0
+let selectedMethod = METHODS.GREEDY
 paramKTxt.disabled = true;
 
 const generate = async (verse) => {
