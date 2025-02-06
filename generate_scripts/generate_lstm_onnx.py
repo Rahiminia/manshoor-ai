@@ -55,14 +55,12 @@ def generate(verse, seq_len=25, k=10, decoding_method=DECODING_METHODS['top_k'],
         if decoding_method == DECODING_METHODS['greedy']:
             idx = np.argmax(p[0][0])
         elif decoding_method == DECODING_METHODS['sampling']:
-            print('2')
             idx = np.random.choice(range(1, vocab_size + 1), 1, p=p[0][0])
         elif decoding_method == DECODING_METHODS['top_k']:
-            print('3')
             v = list(zip(range(1, vocab_size + 1), p[0][0]))
             v = np.array(sorted(v, key=lambda i: i[1], reverse=True)[:K])
             idx = np.random.choice(v[:,0], 1, p=softmax(v[:,1]))
-        sentence +=  " " + tokenizer.decode([int(idx)])
+        sentence +=  " " + tokenizer.decode([int(idx[0])])
     return sentence
 
 # print(generate('در این شب سیاه'))
