@@ -1,5 +1,11 @@
+from enum import Enum
 from flask import Flask, request, jsonify, render_template
-from generate_scripts.generate_lstm_onnx import generate
+from generate_scripts.generate_lstm_onnx import generate as generate_lstm
+from generate_scripts.generate_gpt_onnx import generate as generate_gpt
+
+class MODELS(Enum):
+    GPT = 0
+    LSTM = 1
 
 def validate(v, c):
     if v < c[0] or v > c[1]:
@@ -24,14 +30,22 @@ def generate_verse():
         seq_len = int(request.args.get('len'))
         method = int(request.args.get('method'))
         k = int(request.args.get('k'))
-        if not validate(seq_len, [0, 50]) or not validate(method, [-1, 2]) or not validate(k, [1, 1000]):
+        model = int(request.args.get('model'))
+        verse = verse[:30]
+        if not validate(model, [-1, 2]) or not validate(seq_len, [0, 50]) or not validate(method, [-1, 2]) or not validate(k, [1, 1000]):
             raise ValueError('invalid parameters')
         if not verse or len(verse) < 0:
             return jsonify(message="Please provide a sample verse"), 400
-        output = generate(verse, seq_len, k, decoding_method=method)
+        output = ''
+        if model == MODELS.GPT.value:
+            output = generate_gpt(verse, seq_len)
+        else:
+            output = generate_lstm(verse, seq_len, k, decoding_method=method)
         return jsonify(verse=output), 200
-    except:
+    except ValueError:
         return jsonify(message="Invalid request format"), 400
+    except RuntimeError:
+        return jsonify(message="model onnx file not found"), 400
 
 if __name__ == "__main__":
     print("\n\n** ManshoorAI **\n\n")

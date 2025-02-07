@@ -10,6 +10,16 @@ p {
     padding: 0;
     margin: 0;
 }
+
+p.note {
+    width: 100%;
+    text-align: center;
+    font-size: smaller;
+    color: #555;
+    margin-inline: 20px;
+    margin-block: 10px;
+}
+
 div.note {
     background-color: #7DD3FC;
     border-radius: 5px;
@@ -21,6 +31,29 @@ div.note h5 {
     color: #082F49;
     font-weight: normal;
     margin: 5px 0;
+}
+
+div.info {
+    background:#7DD3FC;
+    border-radius: 5px;
+    border: 1px solid #07598555;
+    color:#082F49;
+    width: fit-content;
+    padding-inline: 10px;
+    padding-block: 2px;
+    margin-block: 2px;
+    font-weight: normal;
+    font-size: small;
+}
+div.error {
+    color:#9D174D;
+    padding-inline: 10px;
+    padding-block: 2px;
+    font-weight: normal;
+    font-size: small;
+}
+input.error {
+    border: 1px solid #9D174D;
 }
 a.small {
     font-size: small;
@@ -75,6 +108,7 @@ h5 {
 .yellow {
     background:#ffcc00;
     border-radius: 5px;
+    border: 1px solid #713F1255;
     color:#713F12;
     width: fit-content;
     padding-inline: 10px;
@@ -139,7 +173,7 @@ label {
 }
 
 #loading-wrapper {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
     position: absolute;
     height: 100%;
     width: 100%;
