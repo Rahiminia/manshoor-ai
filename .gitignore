@@ -1,3 +1,4 @@
+model.onnx
 data.txt
 __pycache__/
 *.py[cod]
