@@ -7,10 +7,25 @@ class MODELS(Enum):
     GPT = 0
     LSTM = 1
 
+class DEFAULT_VALUES(Enum):
+    METHOD = 0
+    K = 10
+    MODEL = MODELS.GPT.value
+    SEQ_LEN = 25
+
 def validate(v, c):
     if v < c[0] or v > c[1]:
         return False
     return True
+
+def trim_verse(verse, max_len):
+    words = verse.split(' ')
+    res = ''
+    for word in words:
+        if len(res) + len(word) > max_len:
+            break
+        res += ' ' + word
+    return res
 
 app = Flask(__name__)
 
@@ -27,11 +42,11 @@ def test():
 def generate_verse():
     try:
         verse = request.args.get('verse')
-        seq_len = int(request.args.get('len'))
-        method = int(request.args.get('method'))
-        k = int(request.args.get('k'))
-        model = int(request.args.get('model'))
-        verse = verse[:30]
+        seq_len = int(request.args.get('len') or DEFAULT_VALUES.SEQ_LEN.value)
+        method = int(request.args.get('method') or DEFAULT_VALUES.METHOD.value)
+        k = int(request.args.get('k') or DEFAULT_VALUES.K.value)
+        model = int(request.args.get('model') or DEFAULT_VALUES.MODEL.value)
+        verse = trim_verse(verse, 30)
         if not validate(model, [-1, 2]) or not validate(seq_len, [0, 50]) or not validate(method, [-1, 2]) or not validate(k, [1, 1000]):
             raise ValueError('invalid parameters')
         if not verse or len(verse) < 0:
