@@ -2,16 +2,25 @@ import onnxruntime as ort
 import numpy as np
 from tokenizers import Tokenizer
 
+
 def softmax(x):
     return np.exp(x)/sum(np.exp(x))
 
-DECODING_METHODS = { "greedy": 0, "sampling": 1, "top_k": 2 }
+
+DECODING_METHODS = {
+    "greedy": 0,
+    "sampling": 1,
+    "top_k": 2
+}
+
 
 def load_tokenizer(filename):
     return Tokenizer.from_file(filename)
 
+
 def load_model(filename):
     return ort.InferenceSession(filename)
+
 
 def pad_and_truncate(tokenizer, input, max_len):
     res = []
@@ -20,8 +29,11 @@ def pad_and_truncate(tokenizer, input, max_len):
             res.append(item[:max_len])
         else:
             padding_size = max_len - len(item)
-            res.append(([tokenizer.token_to_id('[PAD]')] * padding_size) + item)
+            res.append(
+                ([tokenizer.token_to_id('[PAD]')] * padding_size) + item
+            )
     return np.array(res)
+
 
 def to_categorical(input, total):
     res = []
@@ -33,7 +45,14 @@ def to_categorical(input, total):
         res.append(cat)
     return np.array(res)
 
-def generate(verse, seq_len=25, k=10, decoding_method=DECODING_METHODS['top_k'], tokenizer_filename='models/lstm_tokenizer.json', model_filename='models/lstm_model.onnx'):
+
+def generate(
+        verse,
+        seq_len=25,
+        k=10,
+        decoding_method=DECODING_METHODS['top_k'],
+        tokenizer_filename='models/lstm_tokenizer.json',
+        model_filename='models/lstm_model.onnx'):
     sentence = verse
     tokenizer = load_tokenizer(tokenizer_filename)
     loaded_model = load_model(model_filename)
@@ -56,8 +75,6 @@ def generate(verse, seq_len=25, k=10, decoding_method=DECODING_METHODS['top_k'],
         elif DECODING_METHOD == DECODING_METHODS['top_k']:
             v = list(zip(range(1, vocab_size + 1), p[0][0]))
             v = np.array(sorted(v, key=lambda i: i[1], reverse=True)[:K])
-            idx = np.random.choice(v[:,0], 1, p=softmax(v[:,1]))
-        sentence +=  " " + tokenizer.decode([int(idx)])
+            idx = np.random.choice(v[:, 0], 1, p=softmax(v[:, 1]))
+        sentence += " " + tokenizer.decode([int(idx)])
     return sentence
-
-# print(generate('در این شب سیاه'))

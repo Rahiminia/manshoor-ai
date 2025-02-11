@@ -2,16 +2,23 @@ import numpy as np
 import onnxruntime as ort
 from tokenizers import Tokenizer
 
+
 def load_tokenizer(filename):
     return Tokenizer.from_file(filename)
+
 
 def load_model(filename):
     try:
         return ort.InferenceSession(filename)
-    except:
+    except Exception:
         raise RuntimeError('onnx model file not found')
 
-def generate(verse, seq_len=25, temperature=0.75, tokenizer_filename='models/gpt_tokenizer.json', model_filename='models/model.onnx'):
+
+def generate(verse,
+             seq_len=25,
+             temperature=0.75,
+             tokenizer_filename='models/gpt_tokenizer.json',
+             model_filename='models/model.onnx'):
     sentence = verse
     tokenizer = load_tokenizer(tokenizer_filename)
     loaded_model = load_model(model_filename)
@@ -34,16 +41,21 @@ def generate(verse, seq_len=25, temperature=0.75, tokenizer_filename='models/gpt
             next_token = np.argmax(next_token_logits, axis=-1).item()
         else:
             scaled_logits = next_token_logits / TEMP
-            scaled_logits = scaled_logits - np.max(scaled_logits, axis=-1, keepdims=True)
+            scaled_logits = scaled_logits - np.max(
+                scaled_logits,
+                axis=-1,
+                keepdims=True
+            )
             exp_logits = np.exp(scaled_logits)
             probs = exp_logits / np.sum(exp_logits, axis=-1, keepdims=True)
             probs = probs[0]
             next_token = np.random.choice(probs.shape[0], p=probs)
         input_ids = np.concatenate((input_ids, [[next_token]]), axis=1)
         attention_mask = np.concatenate((attention_mask, [[1]]), axis=1)
-        position_ids = np.concatenate((position_ids, [[position_ids[0][-1] + 1]]), axis=1)
+        position_ids = np.concatenate(
+            (position_ids, [[position_ids[0][-1] + 1]]),
+            axis=1
+        )
 
     generated_text = tokenizer.decode(input_ids[0], skip_special_tokens=True)
     return generated_text
-
-# print(generate('در این شب سیاه'))

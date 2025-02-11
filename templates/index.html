@@ -33,11 +33,11 @@
             </div>
             <div id="params" class="box-wrapper">
                 <p style="font-size: 0.8em; padding-right: 20px; text-align: center;">پارامترهای مدل</p>
+                <div class="parameter-line">
+                    <label for="seq-len-txt">طول رشته خروجی:</label>
+                    <input type="number" id="seq-len-txt" class="textbox ltr" placeholder="طول متن خروجی" value="25"/>
+                </div>
                 <section id="lstm-params">
-                    <div class="parameter-line">
-                        <label for="seq-len-txt">طول رشته خروجی:</label>
-                        <input type="number" id="seq-len-txt" class="textbox ltr" placeholder="طول متن خروجی" value="25"/>
-                    </div>
                     <div class="parameter-line">
                         <label for="method-select">متد تولید خروجی:</label>
                         <select class="selector" id="method-select">
